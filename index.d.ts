@@ -9,6 +9,8 @@ export type GetOptions = {
 	@default 'main'
 	*/
 	readonly screen?: 'all' | 'main' | number;
+
+	readonly libraryPath?: string;
 };
 
 export type SetOptions = {
