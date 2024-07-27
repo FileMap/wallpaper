@@ -7,9 +7,10 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const execFile = promisify(childProcess.execFile);
 
 // Binary source → https://github.com/sindresorhus/macos-wallpaper
-const binary = path.join(__dirname, 'macos-wallpaper');
 
-export async function getWallpaper({screen = 'main'} = {}) {
+export async function getWallpaper({screen = 'main', libraryPath=__dirname} = {}) {
+	const binary = path.join(libraryPath, 'macos-wallpaper');
+
 	let {stdout} = await execFile(binary, ['get', '--screen', screen]);
 	stdout = stdout.trim();
 

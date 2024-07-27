@@ -7,12 +7,12 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const execFile = promisify(childProcess.execFile);
 
 // Binary source → https://github.com/sindresorhus/windows-wallpaper
-const binary = path.join(__dirname, 'windows-wallpaper-x86-64.exe');
 
-export async function getWallpaper() {
+export async function getWallpaper({libraryPath=__dirname} = {}) {
 	const arguments_ = [
 		'get',
 	];
+	const binary = path.join(libraryPath, 'windows-wallpaper-x86-64.exe');
 
 	const {stdout} = await execFile(binary, arguments_);
 	return stdout.trim();
